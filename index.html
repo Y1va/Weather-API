@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <header style="text-align: center;">
+    <h1 id="Para1">Weather Dashboard</h1>
+    <p id="inputContainer">City: <input type="text" id="cityInput" placeholder="Enter City Here"></p>
+    <button onclick="GetInfo()">Search</button>
+    <h2 id="cityName">London</h2>
+  </header>
+
+  <main>
+    <section>
+      <div id="weatherContainer">
+        <div id="iconsContainer">
+          <div class="icons">
+            <p class="weather" id="day1"></p>
+            <div class="image"><img src="./assets/images/dots.png" class="imgClass" id="img1" alt=""></div>
+            <p class="minValues" id="day1Min">Loading...</p>
+            <p class="maxValues" id="day1Max">Loading...</p>
+            <p class="tempValues" id="day1Temp">Temp: ...</p>
+            <p class="windValues" id="day1Wind">Wind: ...</p>
+            <p class="humidityValues" id="day1Humidity">Humidity: ...</p>
+          </div>
+          <div class="icons">
+            <p class="weather" id="day2"></p>
+            <div class="image"><img src="./assets/images/dots.png" class="imgClass" id="img2" alt=""></div>
+            <p class="minValues" id="day2Min">Loading...</p>
+            <p class="maxValues" id="day2Max">Loading...</p>
+            <p class="tempValues" id="day2Temp">Temp: ...</p>
+            <p class="windValues" id="day2Wind">Wind: ...</p>
+            <p class="humidityValues" id="day2Humidity">Humidity: ...</p>
+          </div>
+          <div class="icons">
+            <p class="weather" id="day3"></p>
+            <div class="image"><img src="./assets/images/dots.png" class="imgClass" id="img3" alt=""></div>
+            <p class="minValues" id="day3Min">Loading...</p>
+            <p class="maxValues" id="day3Max">Loading...</p>
+            <p class="tempValues" id="day3Temp">Temp: ...</p>
+            <p class="windValues" id="day3Wind">Wind: ...</p>
+            <p class="humidityValues" id="day3Humidity">Humidity: ...</p>
+          </div>
+          <div class="icons">
+            <p class="weather" id="day4"></p>
+            <div class="image"><img src="./assets/images/dots.png" class="imgClass" id="img4" alt=""></div>
+            <p class="minValues" id="day4Min">Loading...</p>
+            <p class="maxValues" id="day4Max">Loading...</p>
+            <p class="tempValues" id="day4Temp">Temp: ...</p>
+            <p class="windValues" id="day4Wind">Wind: ...</p>
+            <p class="humidityValues" id="day4Humidity">Humidity: ...</p>
+          </div>
+          <div class="icons">
+            <p class="weather" id="day5"></p>
+            <div class="image"><img src="./assets/images/dots.png" class="imgClass" id="img5" alt=""></div>
+            <p class="minValues" id="day5Min">Loading...</p>
+            <p class="maxValues" id="day5Max">Loading...</p>
+            <p class="tempValues" id="day5Temp">Temp: ...</p>
+            <p class="windValues" id="day5Wind">Wind: ...</p>
+            <p class="humidityValues" id="day5Humidity">Humidity: ...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
