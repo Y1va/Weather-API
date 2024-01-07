@@ -14,3 +14,17 @@ var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
 var forecastContainerEl = document.getElementById("forecastContainer");
 
+// SEARCH HISTORY 
+// They choose what they want, we do not. We will dynamically add to the array
+var searchHistoryArray = [];
+var savedSearchHistory = localStorage.getItem("searchHistoryArray");
+if (savedSearchHistory) {
+  searchHistoryArray = JSON.parse(savedSearchHistory);
+  displaySearchHistory();
+}
+
+searchForm.addEventListener("submit", formSubmit);
+
+function getCurrentDate() {
+  return dayjs().format("DD/MM/YYYY");
+}
