@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+
+    <div id="wholeContainer">
+      <!-- SEARCH BOX -->
+      <aside id="searchContainer">
+        <form id="searchForm">
+          <h2>Search for a City</h2>
+          <input type="text" id="cityInput" placeholder="Enter a City" />
+          <button id="submitButton" type="submit">Search</button>
+        </form>
+        <div id="searchHistory" class="search-history"></div>
+      </aside>
+
+      <!-- TODAY CONTAINER -->
+      <main id="mainContainer">
+        <section id="currentWeather">
+          <div id="cityName"></div>
+          <div id="date"></div>
+          <div id="weatherIcon"></div>
+          <div id="temperature"></div>
+          <div id="humidity"></div>
+          <div id="windSpeed"></div>
+        </section>
+
+        <section id="forecast">
+          <h3>5-Day Forecast:</h3>
+          <div id="forecastContainer"></div>
+        </section>
+
+
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
