@@ -28,3 +28,19 @@ searchForm.addEventListener("submit", formSubmit);
 function getCurrentDate() {
   return dayjs().format("DD/MM/YYYY");
 }
+
+// GET WEATHER DATA
+function fetchWeatherData(city) {
+
+var weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherKey}`
+
+
+fetch(weatherUrl)
+.then(function(response){
+  return response.json();
+})
+.then(function(weatherData){
+  console.log(weatherData);
+})
+
+}
