@@ -100,6 +100,47 @@ function fetchForecastData(Url) {
   .then(function(forecastData){
     // console.log(forecastData);
     forecastContainerEl.innerHTML = "";
-    var forecastEntries = forecastData.list
+    var forecastEntries = forecastData.list;
+    var nextFiveDays = [];
+    var currentDate = dayjs().format("YYYY-MM-DD");
+    var forecastDates = [];
+
+    for(var i = 0; i < 6; i++) {
+      var nextDate = dayjs(currentDate).add(i + 1, "day").format("YYYY-MM-DD");
+      forecastDates.push(nextDate);
+    }
+
+    forecastEntries.forEach(function(forecastEntry){
+      var forecastDateTime = forecastEntry.dt_txt
+      var forecastDate = forecastDateTime.split(" ")[0];
+      if(forecastDates.includes(forecastDate) && forecastDateTime.includes("12:00:00")) {
+        var forecastItem = {
+          date: dayjs(forecastDateTime).format("DD/MM/YYYY"),
+          icon: forecastEntry.weather[0].icon,
+          temperature: forecastEntry.main.temp,
+          windSpeed: forecastEntry.wind.speed,
+          humidity: forecastEntry.main.humidity,
+        };
+        nextFiveDays.push(forecastItem);
+      }
+    })
+
+    nextFiveDays.forEach(function(forecastEntry){
+      var forecastElement = document.createElement("div");
+      forecastElement.className = "forecast-item";
+      forecastElement.innerHTML = `
+      <div>${forecastEntry.date}</div>
+      <div><img src="https://openweathermap.org/img/w/${forecastEntry.icon}.png" alt="Weather Icon"></div>
+      <div>Temperature: ${forecastEntry.temperature}°F</div>
+      <div>Wind Speed: ${forecastEntry.windSpeed} mph</div>
+      <div>Humidity: ${forecastEntry.humidity}%</div>`;
+      
+      // append means connect to/bridge between
+      forecastContainerEl.appendChild(forecastElement);
+
+    })
+
+
+
   })
 }
