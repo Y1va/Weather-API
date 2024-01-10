@@ -37,13 +37,16 @@ header {
 #cityInput,
 #submitButton {
   width: 100%;
-  padding: 5px;
+  padding: 7px;
   box-sizing: border-box;
 }
 #submitButton {
   background-color: #0000FF;
   color: #fff;
   margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
 }
 
 /* MAIN CONTAINER */
@@ -60,6 +63,7 @@ header {
 #currentWeather {
   border: 1px solid #ccc;
   padding: 20px;
+  border-color: black;
 }
 #cityName,
 #date,
