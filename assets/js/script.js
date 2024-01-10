@@ -65,7 +65,7 @@ function fetchWeatherData(city) {
       // rewrite information for new city that is searched
       cityNameEl.innerText = weatherData.name;
       dateEl.innerText = getCurrentDate();
-      weatherIconEl.innerText = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
+      weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
       temperatureEl.textContent = "Temp: " + weatherData.main.temp + "°F";
       humidityEl.textContent = "Humidity: " + weatherData.main.humidity + "%";
       windSpeedEl.textContent = "Wind: " + weatherData.wind.speed + "MPH";
@@ -89,58 +89,51 @@ function addToSearchHistory(city) {
 }
 
 // 5 day forecast
-function fetchForecastData(Url) {
-  fetch(Url)
-    .then(function (response) {
-      return response.json();
+function fetchForecastData(url) {
+  fetch(url)
+    .then(function (res) {
+      return res.json();
     })
-
     .then(function (forecastData) {
-      // console.log(forecastData);
       forecastContainerEl.innerHTML = "";
       var forecastEntries = forecastData.list;
       var nextFiveDays = [];
-      var currentDate = dayjs().format("YYYY-MM-DD");
       var forecastDates = [];
-
-      for (var i = 0; i < 6; i++) {
-        var nextDate = dayjs(currentDate)
-          .add(i + 1, "day")
-          .format("YYYY-MM-DD");
-        forecastDates.push(nextDate);
-      }
-
-      forecastEntries.forEach(function (forecastEntry) {
-        var forecastDateTime = forecastEntry.dt_txt;
+      for (var i = 0; i < forecastEntries.length; i++) {
+        var forecastDateTime = forecastEntries[i].dt_txt;
         var forecastDate = forecastDateTime.split(" ")[0];
         if (
-          forecastDates.includes(forecastDate) &&
+          !forecastDates.includes(forecastDate) &&
           forecastDateTime.includes("12:00:00")
         ) {
+          forecastDates.push(forecastDate);
           var forecastItem = {
             date: dayjs(forecastDateTime).format("DD/MM/YYYY"),
-            icon: forecastEntry.weather[0].icon,
-            temperature: forecastEntry.main.temp,
-            windSpeed: forecastEntry.wind.speed,
-            humidity: forecastEntry.main.humidity,
+            icon: forecastEntries[i].weather[0].icon,
+            temperature: forecastEntries[i].main.temp,
+            windSpeed: forecastEntries[i].wind.speed,
+            humidity: forecastEntries[i].main.humidity,
           };
           nextFiveDays.push(forecastItem);
         }
-      });
-
+        if (forecastDates.length === 5) {
+          break;
+        }
+      }
       nextFiveDays.forEach(function (forecastEntry) {
-        var forecastElement = document.createElement("div");
-        forecastElement.className = "forecast-item";
-        forecastElement.innerHTML = `
-      <div>${forecastEntry.date}</div>
-      <div><img src="https://openweathermap.org/img/w/${forecastEntry.icon}.png" alt="Weather Icon"></div>
-      <div>Temperature: ${forecastEntry.temperature}°F</div>
-      <div>Wind Speed: ${forecastEntry.windSpeed} mph</div>
-      <div>Humidity: ${forecastEntry.humidity}%</div>`;
-
-        // append means connect to/bridge between
-        forecastContainerEl.appendChild(forecastElement);
+        var forecastItem = document.createElement("div");
+        forecastItem.className = "forecast-item";
+        forecastItem.innerHTML = `
+                  <div>Date: ${forecastEntry.date}</div>
+                  <div><img src="https://openweathermap.org/img/w/${forecastEntry.icon}.png" alt="Weather Icon"></div>
+                  <div>Temperature: ${forecastEntry.temperature}°F</div>
+                  <div>Wind Speed: ${forecastEntry.windSpeed} mph</div>
+                  <div>Humidity: ${forecastEntry.humidity}%</div>`;
+        forecastContainerEl.appendChild(forecastItem);
       });
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 }
 
