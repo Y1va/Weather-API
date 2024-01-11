@@ -103,6 +103,8 @@ header {
   border: 1 px solid #ccc;
   text-align: center;
   background-color: #24245235;
+  height: 170px;
+  border-radius: 4px;
 }
 
 /* SEARCH HISTORY */

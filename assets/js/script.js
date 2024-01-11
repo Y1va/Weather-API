@@ -22,6 +22,7 @@ var forecastContainerEl = document.getElementById("forecastContainer");
 var searchHistoryArray = [];
 // When a user inputs data in the searchHistoryArray, this variable ⬇️ will obtain the data from the empty array and store it in savedSearchHistory which makes it local storage. That is what the getItem method is doing here.
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
+console.log(savedSearchHistory);
 // If there is any data stored in savedSearchHistory (local storage) the data will then be loaded for the user and will not go away. JSON.parse is making it readable text.
 if (savedSearchHistory) {
   // Once there is input stored in searchHistoryArray, it will be displayed for the user.
@@ -32,12 +33,13 @@ if (savedSearchHistory) {
 // Event Listener for the search form. When clicking submit on the submit button.
 searchForm.addEventListener("submit", formSubmit);
 
-// function for getting the current date from the dayjs API.
+// function for getting the current date from the dayjs API/library.
 function getCurrentDate() {
   return dayjs().format("DD/MM/YYYY");
 }
 
 // GET WEATHER DATA
+// Function to fetch current weather data from the openweathermap API
 function fetchWeatherData(city) {
   // API for the openweathermap API
   // Template literal
@@ -77,6 +79,7 @@ function fetchWeatherData(city) {
     });
 }
 
+// Function to add a city to the search history
 function addToSearchHistory(city) {
   if (!searchHistoryArray.includes(city)) {
     searchHistoryArray.push(city);
@@ -88,13 +91,14 @@ function addToSearchHistory(city) {
   }
 }
 
-// 5 day forecast
+// Function to fetch 5 day forecast data
 function fetchForecastData(url) {
   fetch(url)
     .then(function (res) {
       return res.json();
     })
     .then(function (forecastData) {
+      // Process and display the forecast data
       forecastContainerEl.innerHTML = "";
       var forecastEntries = forecastData.list;
       var nextFiveDays = [];
@@ -137,16 +141,19 @@ function fetchForecastData(url) {
     });
 }
 
+// Function to handle form submission
 function formSubmit(event) {
   event.preventDefault();
 
   var city = cityInput.value.trim();
 
+  // If the city search-bar IS NOT blank, then the weather data will be fetched using the fetchWeatherData funtion.
   if (city !== "") {
     fetchWeatherData(city);
   }
 }
 
+// Function for displaying the search history
 function displaySearchHistory() {
   var searchHistoryElement = document.getElementById("searchHistory");
   searchHistoryElement.innerHTML = "";
@@ -156,6 +163,7 @@ function displaySearchHistory() {
     var cityItem = document.createElement("div");
     cityItem.innerText = city;
     cityItem.classList.add("city-item");
+    // Event listener for clicking on a city in the search history
     cityItem.addEventListener("click", function () {
       fetchWeatherData(this.innerText);
     });
