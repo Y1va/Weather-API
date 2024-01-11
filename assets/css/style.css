@@ -4,12 +4,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat';
 }
 
 /* BODY STYLES */
 body {
   font-family: sans-serif;
-  background-color: #fff;
+  background-color: #B4D4FF;
   padding: 20px;
 }
 #wholeContainer {
@@ -27,7 +28,7 @@ header {
 /* SEARCH CONTAINER */
 #searchContainer {
   flex: 0 0 250px;
-  background-color: #fff;
+  background-color: #B4D4FF;
   padding: 10px;
   margin-right: 20px;
 }
@@ -107,6 +108,10 @@ header {
   border-radius: 4px;
 }
 
+h2 {
+  margin-bottom: 9px;
+}
+
 /* SEARCH HISTORY */
 .search-history {
   margin-top: 10px;
@@ -117,7 +122,7 @@ header {
   margin-bottom: 10px;
   cursor: pointer;
   text-align: center;
-  background-color: lightgrey;
+  background-color: #BFCFE7;
 }
 
 /* RESPONSIVE LAYOUT */
