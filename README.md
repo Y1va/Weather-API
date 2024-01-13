@@ -10,7 +10,7 @@ It also includes functionality for handling search history and storing that hist
 
 ## Usage
 
-You can view the deployed application through this link 
+You can view the deployed application through this link: https://y1va.github.io/Weather-API/
 
 
 ## Preview
